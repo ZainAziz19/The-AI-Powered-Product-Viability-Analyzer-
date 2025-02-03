@@ -1,0 +1,55 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Progress } from "@/components/ui/progress";
+
+export default function ProjectRiskAnalyzer() {
+  const [budget, setBudget] = useState(0);
+  const [timeline, setTimeline] = useState(0);
+  const [resources, setResources] = useState(0);
+  const [riskScore, setRiskScore] = useState(null);
+
+  const calculateRisk = () => {
+    let score = 0;
+    if (budget < 50000) score += 30;
+    if (timeline < 3) score += 40;
+    if (resources < 5) score += 30;
+    setRiskScore(score);
+  };
+
+  return (
+    <div className="flex flex-col items-center p-6">
+      <h1 className="text-xl font-bold mb-4">AI-Powered Project Risk Analyzer</h1>
+      <Card className="w-full max-w-md p-4">
+        <CardContent className="space-y-4">
+          <div>
+            <Label>Budget ($)</Label>
+            <Input type="number" value={budget} onChange={(e) => setBudget(Number(e.target.value))} />
+          </div>
+          <div>
+            <Label>Timeline (months)</Label>
+            <Input type="number" value={timeline} onChange={(e) => setTimeline(Number(e.target.value))} />
+          </div>
+          <div>
+            <Label>Resources (team members)</Label>
+            <Input type="number" value={resources} onChange={(e) => setResources(Number(e.target.value))} />
+          </div>
+          <Button onClick={calculateRisk}>Analyze Risk</Button>
+          {riskScore !== null && (
+            <div className="mt-4">
+              <p>Risk Score: {riskScore}%</p>
+              <Progress value={riskScore} className="mt-2" />
+              <p className="mt-2 text-sm text-gray-600">
+                {riskScore > 60 ? "High Risk - Consider increasing budget, extending timeline, or adding resources." :
+                 riskScore > 30 ? "Medium Risk - Review project constraints carefully." :
+                 "Low Risk - Project is in a good state."}
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
