@@ -1,4 +1,4 @@
-# The-AI-Powered-Product-Viability-Analyzer-
+  # The-AI-Powered-Product-Viability-Analyzer-
 The AI-Powered Product Viability Analyzer helps Product Managers evaluate new product ideas using AI-driven insights. It assesses market demand, competition, development complexity, revenue potential, and risks, providing data-backed reports to make smarter decisions before investing resources. 🚀
 Key Features
 
@@ -20,7 +20,7 @@ Frontend: Next.js (React, TypeScript)
 Backend: Node.js / Flask (for API & AI integration)
 AI Integration: OpenAI API for analysis
 Hosting: Vercel / AWS
-Why Use This?
+
 
 Helps Product Managers make informed decisions.
 Saves time and resources by predicting viability early.
